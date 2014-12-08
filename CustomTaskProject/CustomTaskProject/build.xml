@@ -1,0 +1,49 @@
+<project name="CustomTask" default="all" basedir=".">
+	<description>
+        Build file to create libraries for the ShareInsights Platform
+    </description>
+
+	<!-- set global properties for this build -->
+	<property file="build.properties" />
+	<property name="src.dir" location="src" />
+	<property name="lib.dir" location="lib" />
+	<property name="classes.dir" location="classes" />
+	<property name="dist.dir" location="dist" />
+	<property name="resources.dir" location="resources" />
+	<property name="product.name" value="${custom.task.jar.name}" />
+
+	<target name="clean">
+		<delete dir="${classes.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="init" depends="clean">
+		<!-- Create the classes directory structure used by compile -->
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${classes.dir}" />
+	</target>
+
+	<target name="compile" depends="init" description="compile the source">
+		<!-- Compile the java code from ${src.dir} into ${classes.dir} -->
+		<!-- keeping source and destination version as 1.6 as pig jar is compiled with 1.6 and so requires UDFs to be compiled in same -->
+		<javac source="1.6" target="1.6" srcdir="${src.dir}" destdir="${classes.dir}" debug="true">
+			<classpath>
+				<fileset dir="${lib.dir}" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution">
+		<jar destfile="${dist.dir}/${product.name}.jar" basedir="${classes.dir}" />
+		<copy todir="${dist.dir}">
+			<fileset dir="${resources.dir}" />
+			<fileset file="readme.txt" />
+			<fileset dir="${lib.dir}" />
+		</copy>
+	</target>
+
+	<!-- ========= The main target "all" ========= -->
+	<target name="all" depends="clean,dist" />
+
+</project>
+

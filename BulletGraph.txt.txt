@@ -1,0 +1,16 @@
+1. Work Packet : Bullet Graphs
+The bullet graph was developed to replace the meters and gauges that are often used on 
+dashboards. Its linear and no-frills design provides a rich display of data in a small space, which 
+is essential on a dashboard. Like most meters and gauges, bullet graphs feature a single 
+quantitative measure (for example, year-to-date revenue) along with complementary measures 
+to enrich the meaning of the featured measure. Specifically, bullet graphs support the 
+comparison of the featured measure to one or more related measures (for example, a target or 
+the same measure at some point in the past, such as a year ago) and relate the featured 
+measure to defined quantitative ranges that declare its qualitative state (for example, good, 
+satisfactory, and poor). Its linear design not only gives it a small footprint, but also supports 
+more efficient reading than radial meters.
+
+
+http://www.perceptualedge.com/articles/misc/Bullet_Graph_Design_Spec.pdf
+
+Starter Implementation : http://bl.ocks.org/mbostock/4061961
